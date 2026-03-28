@@ -65,7 +65,26 @@ function calc(){
     `Твоя прибыль в рублях: ${fmt(profitRub)}`
   ].join('\n');
 
-  els.copyShort.onclick = () => copyText(shortText, els.copyShort);
+  document.getElementById('copyShort').addEventListener('click', () => {
+  const cbRate = parseFloat(document.getElementById('cbRate').value.replace(',', '.')) || 0;
+  const amount = parseFloat(document.getElementById('amount').value.replace(',', '.')) || 0;
+  const euPct = parseFloat(document.getElementById('euPct').value.replace(',', '.')) || 0;
+  const myPct = parseFloat(document.getElementById('myPct').value.replace(',', '.')) || 0;
+  const currency = document.getElementById('outCurrency').innerText;
+
+  const totalPct = euPct + myPct;
+  const baseRub = amount * cbRate;
+  const feeRub = baseRub * (totalPct / 100);
+  const totalRub = baseRub + feeRub;
+
+  const text = `Курс для Вас: ${cbRate.toLocaleString('ru-RU', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+Сумма оплаты: ${amount.toLocaleString('ru-RU', {maximumFractionDigits: 2})} ${currency}
+Стоимость: ${feeRub.toLocaleString('ru-RU', {minimumFractionDigits: 2, maximumFractionDigits: 2})} руб
+Итого к оплате: ${totalRub.toLocaleString('ru-RU', {minimumFractionDigits: 2, maximumFractionDigits: 2})} руб`;
+
+  navigator.clipboard.writeText(text);
+  alert('Скопировано');
+});
   els.copyFull.onclick = () => copyText(fullText, els.copyFull);
   saveState();
 }
