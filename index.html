@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f1016" />
+  <title>Калькулятор переводов</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div>
+        <h1>Калькулятор переводов</h1>
+        <p>Курс клиенту, прибыль в валюте и в рублях</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <label class="field">
+        <span>Сумма сделки</span>
+        <input id="amount" type="number" inputmode="decimal" placeholder="100000" value="100000" />
+      </label>
+
+      <label class="field">
+        <span>Курс ЦБ</span>
+        <input id="cbRate" type="number" inputmode="decimal" placeholder="97" value="97" />
+      </label>
+
+      <div class="grid two">
+        <label class="field">
+          <span>% европейцев</span>
+          <input id="euPct" type="number" inputmode="decimal" placeholder="0.5" value="0.5" />
+        </label>
+
+        <label class="field">
+          <span>Твой %</span>
+          <input id="myPct" type="number" inputmode="decimal" placeholder="0.5" value="0.5" />
+        </label>
+      </div>
+
+      <div class="section-title">Быстрый выбор твоего %</div>
+      <div class="chips" id="myPctChips">
+        <button class="chip" data-pct="0.3">0.3%</button>
+        <button class="chip active" data-pct="0.5">0.5%</button>
+        <button class="chip" data-pct="0.7">0.7%</button>
+        <button class="chip" data-pct="0.8">0.8%</button>
+        <button class="chip" data-pct="1">1%</button>
+        <button class="chip" data-pct="1.2">1.2%</button>
+      </div>
+
+      <div class="section-title">Тип клиента</div>
+      <div class="chips" id="clientTypeChips">
+        <button class="chip" data-pct="0.3" data-label="Крупный">Крупный</button>
+        <button class="chip active" data-pct="0.5" data-label="Средний">Средний</button>
+        <button class="chip" data-pct="0.8" data-label="Мелкий">Мелкий</button>
+      </div>
+
+      <div class="section-title">Валюта</div>
+      <div class="chips" id="currencyChips">
+        <button class="chip active" data-currency="USD">USD</button>
+        <button class="chip" data-currency="EUR">EUR</button>
+        <button class="chip" data-currency="CNY">CNY</button>
+        <button class="chip" data-currency="AED">AED</button>
+      </div>
+    </section>
+
+    <section class="card results">
+      <div class="row"><span>Валюта</span><strong id="outCurrency">USD</strong></div>
+      <div class="row"><span>Тип клиента</span><strong id="outClientType">Средний</strong></div>
+      <div class="row"><span>Общий % к ЦБ</span><strong id="outTotalPct">1.00%</strong></div>
+      <div class="row accent"><span>Курс клиенту</span><strong id="outClientRate">97.97</strong></div>
+      <div class="row"><span>Твоя прибыль в валюте</span><strong id="outProfitFx">500.00</strong></div>
+      <div class="row"><span>Твоя прибыль в рублях</span><strong id="outProfitRub">48 500.00</strong></div>
+
+      <div class="copy-grid">
+        <button id="copyShort" class="copy-btn">Скопировать коротко</button>
+        <button id="copyFull" class="copy-btn secondary">Скопировать подробно</button>
+      </div>
+    </section>
+
+    <section class="card quick">
+      <div class="section-title">Быстрые ориентиры по твоему %</div>
+      <div class="row"><span>На 100k</span><strong id="out100k">500.00</strong></div>
+      <div class="row"><span>На 300k</span><strong id="out300k">1 500.00</strong></div>
+      <div class="row"><span>На 500k</span><strong id="out500k">2 500.00</strong></div>
+    </section>
+
+    <footer class="footer">
+      <p>Можно открыть как сайт и добавить на главный экран.</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
